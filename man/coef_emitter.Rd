@@ -17,5 +17,5 @@ coef_emitter(h, q)
 \examples{
 h <- c(10, 20, 30)
 q <- c(7.9, 11.4, 14.1)
-eq_emitter(h, q)
+coef_emitter(h, q)
 }
