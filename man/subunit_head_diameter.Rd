@@ -57,8 +57,9 @@ pressure for a given average flow rate and a given flow rate variation
 \examples{
 args_subunit_head_diameter <- list(
   q_req_subunit = 2.2222e-6, q_var_subunit = 10,
-                     s_manifold = c(0.3,0.3,2), s_ini_manifold = 10, n_manifold = 12, dec_manifold = 0.02,
+  s_manifold = c(0.3, 0.3, 2), s_ini_manifold = 10, n_manifold = 12, dec_manifold = 0.02,
   d_lateral = 0.016, s_lateral = 1, s_ini_lateral = 4, n_lateral = 40, dec_lateral = -0.01,
-  coef_em = 6.41e-7, exp_em = 0.54, rc = 1e-4)
+  coef_em = 6.41e-7, exp_em = 0.54, rc = 1e-4
+)
 do.call(subunit_head_diameter, args_subunit_head_diameter)
 }

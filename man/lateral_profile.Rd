@@ -41,6 +41,7 @@ lateral_profile(
 \examples{
 args_lateral_profile <- list(
   h_fim_lateral = 10, d_lateral = 0.012, s_lateral = 0.20, s_ini_lateral = 1,
-  n_lateral = 200, dec_lateral = -0.01, coef_em = 1.67e-7, exp_em = 0.52, rc = 1e-4)
+  n_lateral = 200, dec_lateral = -0.01, coef_em = 1.67e-7, exp_em = 0.52, rc = 1e-4
+)
 do.call(lateral_profile, args_lateral_profile)
 }

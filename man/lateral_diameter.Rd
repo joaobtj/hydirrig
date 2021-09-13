@@ -45,6 +45,7 @@ a given variation in flow rate
 \examples{
 args_lateral_diameter <- list(
   q_var_lateral = 10, h_fim_lateral = 10, s_lateral = 0.20, s_ini_lateral = 1,
-  n_lateral = 200, dec_lateral = -0.01, coef_em = 1.67e-7, exp_em = 0.52, rc = 1e-4)
+  n_lateral = 200, dec_lateral = -0.01, coef_em = 1.67e-7, exp_em = 0.52, rc = 1e-4
+)
 do.call(lateral_diameter, args_lateral_diameter)
 }

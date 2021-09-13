@@ -62,6 +62,7 @@ args_subunit_head <- list(
   q_req_subunit = 2.2222e-6,
   d_manifold = 0.04, s_manifold = 6, s_ini_manifold = 10, n_manifold = 8, dec_manifold = 0.02,
   d_lateral = 0.016, s_lateral = 1, s_ini_lateral = 4, n_lateral = 40, dec_lateral = -0.01,
-  coef_em = 6.41e-7, exp_em = 0.54, rc = 1e-4)
+  coef_em = 6.41e-7, exp_em = 0.54, rc = 1e-4
+)
 do.call(subunit_head, args_subunit_head)
 }

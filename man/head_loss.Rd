@@ -36,5 +36,5 @@ hf Head loss in meters
 methods
 }
 \examples{
-head_loss(d=0.025, q=31e-6, l=100, rc=1e-4)
+head_loss(d = 0.025, q = 31e-6, l = 100, rc = 1e-4)
 }

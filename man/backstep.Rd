@@ -29,8 +29,12 @@ Universal equation.}
 a lateral line
 }
 \examples{
-backstep(h_fim = 10, d = 0.012, s = 1, n = 5, dec = 0, coef_em = 8.84e-7,
-exp_em = 0.50, rc = 2e-6)
-backstep(h_fim = 10, d = 0.012, s = c(0.3, 0.3, 1), n = 12, dec = 0,
-coef_em = 8.84e-7, exp_em = 0.50, rc = 2e-6)
+backstep(
+  h_fim = 10, d = 0.012, s = 1, n = 5, dec = 0, coef_em = 8.84e-7,
+  exp_em = 0.50, rc = 2e-6
+)
+backstep(
+  h_fim = 10, d = 0.012, s = c(0.3, 0.3, 1), n = 12, dec = 0,
+  coef_em = 8.84e-7, exp_em = 0.50, rc = 2e-6
+)
 }
