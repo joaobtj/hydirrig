@@ -21,8 +21,7 @@
 #' @return hf Head loss in meters
 #' @export
 #' @examples
-#' head_loss(d=0.025, q=31e-6, l=100, rc=1e-4)
-
+#' head_loss(d = 0.025, q = 31e-6, l = 100, rc = 1e-4)
 head_loss <- function(d, q, l, rc, v = 1.01e-6, g = 9.81, x1 = 0.06) {
 
   # Reynolds number
