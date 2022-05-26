@@ -3,6 +3,7 @@
 export(backstep)
 export(coef_emitter)
 export(coef_lateral)
+export(et0_calc)
 export(head_loss)
 export(lateral_diameter)
 export(lateral_head)
