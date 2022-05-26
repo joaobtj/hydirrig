@@ -11,7 +11,7 @@ et0_calc(
   umd_min,
   uv,
   uz = 2,
-  rs,
+  rs = NULL,
   g = 0,
   lat,
   alt,
@@ -39,7 +39,7 @@ et0_calc(
 
 \item{alt}{Altitude abose sea level}
 
-\item{date}{}
+\item{date}{Date}
 }
 \value{
 

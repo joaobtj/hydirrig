@@ -11,11 +11,9 @@
 #' @param uz Height of measurement of wind speed above ground surface. Default is 2 m.
 #' @param rs Solar radiation, MJ m^-2^^day^-1
 #' @param g Soil heat flux. Default is 0
-#' @param date
-#'
+#' @param date Date
 #' @return
 #' @export
-#'
 #' @examples
 #' et0_calc(
 #'   tem_max = 21.5, tem_min = 12.3, umd_max = 84, umd_min = 63, uv = 2.78, uz = 10,
@@ -109,5 +107,5 @@ rnl_calc <- function(tem_max, tem_min, ea, rs, rso) {
 
 ## Dia juliano
 yday <- function(x) {
-  return(as.POSIXlt(x, tz = tz(x))$yday + 1)
+  return(as.POSIXlt(x)$yday + 1)
 }
