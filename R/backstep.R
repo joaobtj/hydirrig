@@ -26,7 +26,7 @@ backstep <- function(h_fim, d, s, n, dec, coef_em, exp_em, rc) {
   # check if there are more than two emmiters: n>=2
   if (n < 2) stop("The number of emitters (n) must be 2 or more")
   # 0<exp_em<1
-  if (exp_em >= 1 || exp_em <= 0) stop("exp_em must be between 0 and 1")
+  if (exp_em >= 1 || exp_em < 0) stop("exp_em must be between 0 and 1")
 
   ## EXPAND THE SPACING
   if (!(n %% length(s)) == 0) stop("n must not be a multiple of the vector dimension s")
