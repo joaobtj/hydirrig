@@ -16,7 +16,7 @@
 #'   coef_em = 6.41e-7, exp_em = 0.54, rc = 1e-4
 #' )
 #' do.call(subunit_head_diameter, args_subunit_head_diameter)
-subunit_head_diameter <- function(q_req_subunit, q_var_subunit = 10, s_manifold, s_ini_manifold, n_manifold, dec_manifold, d_lateral, s_lateral, s_ini_lateral, n_lateral, dec_lateral, coef_em, exp_em, rc) {
+subunit_head_diameter <- function(q_req_subunit, q_var_subunit = 10, s_manifold, s_ini_manifold = s_manifold, n_manifold, dec_manifold, d_lateral, s_lateral, s_ini_lateral = s_lateral, n_lateral, dec_lateral, coef_em, exp_em, rc) {
   i <- 0
   h_fim_manifold <- 100
   d_manifold <- 0.2
