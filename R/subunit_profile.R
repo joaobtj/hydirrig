@@ -19,7 +19,7 @@
 #'   coef_em = 6.41e-7, exp_em = 0.54, rc = 1e-4
 #' )
 #' do.call(subunit_profile, args_subunit_profile)
-subunit_profile <- function(h_fim_manifold, d_manifold, s_manifold, s_ini_manifold, n_manifold, dec_manifold, d_lateral, s_lateral, s_ini_lateral, n_lateral, dec_lateral, coef_em, exp_em, rc) {
+subunit_profile <- function(h_fim_manifold, d_manifold, s_manifold, s_ini_manifold = s_manifold, n_manifold, dec_manifold, d_lateral, s_lateral, s_ini_lateral = s_lateral, n_lateral, dec_lateral, coef_em, exp_em, rc) {
   cc <- do.call(coef_lateral, list(d_lateral, s_lateral, s_ini_lateral, n_lateral, dec_lateral, coef_em, exp_em, rc))
 
   coef_manifold <- unname(exp(stats::coef(cc$eq_q)[1]))
