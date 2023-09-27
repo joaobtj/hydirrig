@@ -41,9 +41,6 @@ et0_calc(
 
 \item{date}{Date}
 }
-\value{
-
-}
 \description{
 Reference Evapotranspiration - The FAO Penman-Monteith method
 }

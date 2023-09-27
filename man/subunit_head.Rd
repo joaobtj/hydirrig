@@ -18,8 +18,7 @@ subunit_head(
   dec_lateral,
   coef_em,
   exp_em,
-  rc,
-  ...
+  q_unit = q_unit
 )
 }
 \arguments{
@@ -35,7 +34,7 @@ subunit_head(
 
 \item{dec_manifold}{Slope of the manifold line, decimal}
 
-\item{d_lateral}{Diameter of the lateral line, meter}
+\item{d_lateral}{Diameter of the lateral line, milimeter}
 
 \item{s_lateral}{Spacing between emitters on the lateral line, meter}
 
@@ -49,8 +48,6 @@ subunit_head(
 
 \item{exp_em}{Exponent of the flow-pressure equation of the emitter}
 
-\item{rc}{Absolute roughness relative to pipe material, meter}
-
 \item{...}{additional parameters}
 }
 \description{
@@ -59,10 +56,10 @@ line for a given average flow rate
 }
 \examples{
 args_subunit_head <- list(
-  q_req_subunit = 2.2222e-6,
-  d_manifold = 0.04, s_manifold = 6, s_ini_manifold = 10, n_manifold = 8, dec_manifold = 0.02,
-  d_lateral = 0.016, s_lateral = 1, s_ini_lateral = 4, n_lateral = 40, dec_lateral = -0.01,
-  coef_em = 6.41e-7, exp_em = 0.54, rc = 1e-4
+  q_req_subunit = 2.2222e-6*3600000,
+  d_manifold = 40, s_manifold = 6, s_ini_manifold = 10, n_manifold = 8, dec_manifold = 0.02,
+  d_lateral = 16, s_lateral = 1, s_ini_lateral = 4, n_lateral = 40, dec_lateral = -0.01,
+  coef_em = 6.41e-7*3600000, exp_em = 0.54, q_unit="l/h"
 )
 do.call(subunit_head, args_subunit_head)
 }

@@ -5,21 +5,40 @@
 #'
 #' @inheritParams lateral_profile
 #' @param q_req_lateral Average flow required on the lateral line, m3/s
-#' @param ... additional parameters
+#' @param q_unit=q_unit additional parameters
 #' @export
 #' @examples
 #' args_lateral_head <- list(
-#'   q_req_lateral = 5.5555e-7, d_lateral = 0.012, s_lateral = 0.20, s_ini_lateral = 1,
-#'   n_lateral = 200, dec_lateral = -0.01, coef_em = 1.67e-7, exp_em = 0.52, rc = 1e-4
+#'   q_req_lateral = 5.5555e-7*3600000
+#'   ,
+#'    d_lateral = 12
+#'    ,
+#'     s_lateral = 0.20
+#'     ,
+#'      s_ini_lateral = 1
+#'      ,
+#'
+#'   n_lateral = 200
+#'   ,
+#'    dec_lateral = -0.00
+#'    ,
+#'     coef_em = 1.67e-7*3600000
+#'     ,
+#'      exp_em = 0.52
+#'      ,
+#'       q_unit="l/h"
 #' )
 #' do.call(lateral_head, args_lateral_head)
-lateral_head <- function(q_req_lateral, d_lateral, s_lateral, s_ini_lateral = s_lateral, n_lateral, dec_lateral, coef_em, exp_em, rc, ...) {
+lateral_head <- function(q_req_lateral, d_lateral, s_lateral, s_ini_lateral = s_lateral, n_lateral, dec_lateral, coef_em, exp_em, q_unit=q_unit) {
   f <- function(h_fim_lateral) {
     q_req_lateral -
-      mean(do.call(lateral_profile, list(h_fim_lateral, d_lateral, s_lateral, s_ini_lateral, n_lateral, dec_lateral, coef_em, exp_em, rc))$q_em)
+      mean(lateral_profile(h_fim_lateral=h_fim_lateral, d_lateral=d_lateral, s_lateral=s_lateral, s_ini_lateral=s_ini_lateral,
+                           n_lateral=n_lateral, dec_lateral=dec_lateral, coef_em=coef_em, exp_em=exp_em, q_unit=q_unit)$q_em)
   }
 
-  h_fim_lateral <- bisection(f, ...)
+
+
+  h_fim_lateral <- bisection(f, a = 100, b = 1e-10, i_max = 100, tol = 1e-10)
 
   if (is.null(h_fim_lateral)) {
     stop("Unable to resolve with this initial condition",
@@ -27,7 +46,9 @@ lateral_head <- function(q_req_lateral, d_lateral, s_lateral, s_ini_lateral = s_
     )
   }
 
-  res_x <- do.call(lateral_profile, list(h_fim_lateral$root, d_lateral, s_lateral, s_ini_lateral, n_lateral, dec_lateral, coef_em, exp_em, rc))
+  res_x <- lateral_profile(h_fim_lateral=h_fim_lateral$root, d_lateral=d_lateral, s_lateral=s_lateral,
+                           s_ini_lateral=s_ini_lateral, n_lateral=n_lateral, dec_lateral=dec_lateral,
+                           coef_em=coef_em, exp_em=exp_em, q_unit=q_unit)
 
   return(list(
     d_lateral = d_lateral,

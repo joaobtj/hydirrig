@@ -9,26 +9,44 @@
 #' @export
 #' @examples
 #' args_lateral_head_diameter <- list(
-#'   q_req_lateral = 5.5555e-7, q_var_lateral = 10, s_lateral = 0.20, s_ini_lateral = 1,
-#'   n_lateral = 200, dec_lateral = -0.01, coef_em = 1.67e-7, exp_em = 0.52, rc = 1e-4
+#'   q_req_lateral = 5.5555e-7*3600000
+#'   ,
+#'   q_var_lateral = 10
+#'   ,
+#'    s_lateral = 0.20
+#'    ,
+#'     s_ini_lateral = 1
+#'     ,
+#'
+#'   n_lateral = 12
+#'   ,
+#'    dec_lateral = -0.00
+#'    ,
+#'     coef_em = 1.67e-7*3600000
+#'     ,
+#'      exp_em = 0.52
+#'      ,
+#'      q_unit="l/h"
 #' )
 #' do.call(lateral_head_diameter, args_lateral_head_diameter)
-lateral_head_diameter <- function(q_req_lateral, q_var_lateral = 10, s_lateral, s_ini_lateral = s_lateral, n_lateral, dec_lateral, coef_em, exp_em, rc, ...) {
+lateral_head_diameter <- function(q_req_lateral, q_var_lateral = 10, s_lateral, s_ini_lateral = s_lateral, n_lateral, dec_lateral, coef_em, exp_em, q_unit=q_unit) {
   i <- 0
   h_fim_lateral <- 100
-  d_lateral <- 1
+  d_lateral <- 1000
   repeat{
-    res_h <- do.call(lateral_head, list(
-      q_req_lateral, d_lateral, s_lateral, s_ini_lateral, n_lateral, dec_lateral,
-      coef_em, exp_em, rc
-    ))
+    res_h <- lateral_head(
+      q_req_lateral=q_req_lateral, d_lateral=d_lateral, s_lateral=s_lateral, s_ini_lateral=s_ini_lateral,
+      n_lateral=n_lateral, dec_lateral=dec_lateral,
+      coef_em=coef_em, exp_em=exp_em, q_unit=q_unit
+    )
     i <- i + res_h$iterations
     h_fim_lateral <- res_h$h_fim_lateral
 
-    res_d <- do.call(lateral_diameter, list(
-      q_var_lateral, h_fim_lateral, s_lateral, s_ini_lateral, n_lateral, dec_lateral,
-      coef_em, exp_em, rc
-    ))
+    res_d <- lateral_diameter(
+      q_var_lateral=q_var_lateral, h_fim_lateral=h_fim_lateral, s_lateral=s_lateral, s_ini_lateral=s_ini_lateral,
+      n_lateral=n_lateral, dec_lateral=dec_lateral,
+      coef_em=coef_em, exp_em=exp_em, q_unit=q_unit
+    )
     i <- i + res_d$iterations
     d_lateral <- res_d$d_lateral
 
@@ -43,7 +61,8 @@ lateral_head_diameter <- function(q_req_lateral, q_var_lateral = 10, s_lateral, 
   }
 
 
-  res_x <- do.call(lateral_profile, list(h_fim_lateral, d_lateral, s_lateral, s_ini_lateral, n_lateral, dec_lateral, coef_em, exp_em, rc))
+  res_x <- lateral_profile(h_fim_lateral=h_fim_lateral, d_lateral=d_lateral, s_lateral=s_lateral, s_ini_lateral=s_ini_lateral,
+                           n_lateral=n_lateral, dec_lateral=dec_lateral, coef_em=coef_em, exp_em=exp_em, q_unit=q_unit)
 
 
   return(list(

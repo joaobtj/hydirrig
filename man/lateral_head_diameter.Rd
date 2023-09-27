@@ -13,8 +13,7 @@ lateral_head_diameter(
   dec_lateral,
   coef_em,
   exp_em,
-  rc,
-  ...
+  q_unit = q_unit
 )
 }
 \arguments{
@@ -33,10 +32,6 @@ lateral_head_diameter(
 \item{coef_em}{Coefficient of the flow-pressure equation of the emitter}
 
 \item{exp_em}{Exponent of the flow-pressure equation of the emitter}
-
-\item{rc}{Absolute roughness relative to pipe material, meter}
-
-\item{...}{additional parameters}
 }
 \description{
 \code{lateral_head_diameter} calculates lateral line diameter and
@@ -44,8 +39,24 @@ pressure for a given average flow rate and a given flow rate variation
 }
 \examples{
 args_lateral_head_diameter <- list(
-  q_req_lateral = 5.5555e-7, q_var_lateral = 10, s_lateral = 0.20, s_ini_lateral = 1,
-  n_lateral = 200, dec_lateral = -0.01, coef_em = 1.67e-7, exp_em = 0.52, rc = 1e-4
+  q_req_lateral = 5.5555e-7*3600000
+  ,
+  q_var_lateral = 10
+  ,
+   s_lateral = 0.20
+   ,
+    s_ini_lateral = 1
+    ,
+
+  n_lateral = 12
+  ,
+   dec_lateral = -0.00
+   ,
+    coef_em = 1.67e-7*3600000
+    ,
+     exp_em = 0.52
+     ,
+     q_unit="l/h"
 )
 do.call(lateral_head_diameter, args_lateral_head_diameter)
 }

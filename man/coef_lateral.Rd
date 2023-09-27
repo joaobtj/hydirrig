@@ -12,12 +12,12 @@ coef_lateral(
   dec_lateral,
   coef_em,
   exp_em,
-  rc,
+  q_unit = q_unit,
   sim = list(1, 100, 1)
 )
 }
 \arguments{
-\item{d_lateral}{Diameter of the lateral line, meter}
+\item{d_lateral}{Diameter of the lateral line, milimeter}
 
 \item{s_lateral}{Spacing between emitters on the lateral line, meter}
 
@@ -31,8 +31,6 @@ coef_lateral(
 
 \item{exp_em}{Exponent of the flow-pressure equation of the emitter}
 
-\item{rc}{Absolute roughness relative to pipe material, meter}
-
 \item{sim}{Limites da simulação}
 }
 \description{
@@ -40,8 +38,9 @@ coef_lateral(
 }
 \examples{
 args_coef_lateral <- list(
-  d_lateral = 0.012, s_lateral = 0.20, s_ini_lateral = 1,
-  n_lateral = 200, dec_lateral = -0.01, coef_em = 1.67e-7, exp_em = 0.52, rc = 1e-4
+  d_lateral = 12, s_lateral = 0.20, s_ini_lateral = 1,
+  n_lateral = 200, dec_lateral = -0.01, coef_em = 1.67e-7, exp_em = 0.52,
+  q_unit="m3/s"
 )
 do.call(coef_lateral, args_coef_lateral)
 }

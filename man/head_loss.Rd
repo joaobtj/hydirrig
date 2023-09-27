@@ -4,12 +4,24 @@
 \alias{head_loss}
 \title{Head loss over the length of pipe}
 \usage{
-head_loss(d, q, l, rc, v = 1.01e-06, g = 9.81, x1 = 0.06)
+head_loss(
+  d,
+  q,
+  q_unit = "m3/s",
+  l,
+  rc = 0.002,
+  v = 1.01e-06,
+  g = 9.81,
+  x1 = 0.06
+)
 }
 \arguments{
-\item{d}{Diameter in meters}
+\item{d}{Diameter in milimeters}
 
 \item{q}{Flow rate in cubic meters per second}
+
+\item{q_unit}{Flow measurement unit. Default is cubic meters per second (m3/s).
+Also allowed liters per hour (l/h) and cubic meters per hour (m3/h)}
 
 \item{l}{Length of pipe in meters}
 
@@ -36,5 +48,6 @@ hf Head loss in meters
 methods
 }
 \examples{
-head_loss(d = 0.025, q = 31e-6, l = 100, rc = 1e-4)
+head_loss(d = 25, q = 31e-6, l = 100, rc = 1e-4)
+head_loss(d = 25, q = 111.6, q_unit="l/h", l = 100, rc = 1e-4)
 }

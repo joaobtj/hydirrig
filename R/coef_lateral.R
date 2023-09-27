@@ -8,17 +8,19 @@
 #' @export
 #' @examples
 #' args_coef_lateral <- list(
-#'   d_lateral = 0.012, s_lateral = 0.20, s_ini_lateral = 1,
-#'   n_lateral = 200, dec_lateral = -0.01, coef_em = 1.67e-7, exp_em = 0.52, rc = 1e-4
+#'   d_lateral = 12, s_lateral = 0.20, s_ini_lateral = 1,
+#'   n_lateral = 200, dec_lateral = -0.01, coef_em = 1.67e-7, exp_em = 0.52,
+#'   q_unit="m3/s"
 #' )
 #' do.call(coef_lateral, args_coef_lateral)
-coef_lateral <- function(d_lateral, s_lateral, s_ini_lateral = s_lateral, n_lateral, dec_lateral, coef_em, exp_em, rc, sim = list(1, 100, 1)) {
+coef_lateral <- function(d_lateral, s_lateral, s_ini_lateral = s_lateral, n_lateral, dec_lateral, coef_em, exp_em, q_unit=q_unit, sim = list(1, 100, 1)) {
   h_fim <- do.call(seq, sim)
   h_ini <- vector("numeric", length(h_fim))
   q_ini <- vector("numeric", length(h_fim))
 
   for (i in seq_along(h_fim)) {
-    res_x <- do.call(lateral_profile, list(h_fim[i], d_lateral, s_lateral, s_ini_lateral, n_lateral, dec_lateral, coef_em, exp_em, rc))
+    res_x <- lateral_profile(h_fim_lateral=h_fim[i], d_lateral=d_lateral, s_lateral=s_lateral, s_ini_lateral=s_ini_lateral,
+                             n_lateral=n_lateral, dec_lateral=dec_lateral, coef_em=coef_em, exp_em=exp_em, q_unit=q_unit)
     h_ini[i] <- res_x$h_ini
     q_ini[i] <- res_x$q_ini
   }

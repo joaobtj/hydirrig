@@ -8,23 +8,23 @@ subunit_head_diameter(
   q_req_subunit,
   q_var_subunit = 10,
   s_manifold,
-  s_ini_manifold,
+  s_ini_manifold = s_manifold,
   n_manifold,
   dec_manifold,
   d_lateral,
   s_lateral,
-  s_ini_lateral,
+  s_ini_lateral = s_lateral,
   n_lateral,
   dec_lateral,
   coef_em,
   exp_em,
-  rc
+  q_unit = q_unit
 )
 }
 \arguments{
 \item{q_req_subunit}{Average flow required on the subunit, m3/s}
 
-\item{q_var_subunit}{Subunit maximum variation in flow rate, percentage}
+\item{q_var_subunit}{Subunit maximum variation in flow rate, peq_unit=q_unitentage}
 
 \item{s_manifold}{Spacing between lateral lines in the manifold line, meter}
 
@@ -34,7 +34,7 @@ subunit_head_diameter(
 
 \item{dec_manifold}{Slope of the manifold line, decimal}
 
-\item{d_lateral}{Diameter of the lateral line, meter}
+\item{d_lateral}{Diameter of the lateral line, milimeter}
 
 \item{s_lateral}{Spacing between emitters on the lateral line, meter}
 
@@ -47,8 +47,6 @@ subunit_head_diameter(
 \item{coef_em}{Coefficient of the flow-pressure equation of the emitter}
 
 \item{exp_em}{Exponent of the flow-pressure equation of the emitter}
-
-\item{rc}{Absolute roughness relative to pipe material, meter}
 }
 \description{
 \code{subunit_head_diameter} calculates manifold line diameter and
@@ -56,10 +54,10 @@ pressure for a given average flow rate and a given flow rate variation
 }
 \examples{
 args_subunit_head_diameter <- list(
-  q_req_subunit = 2.2222e-6, q_var_subunit = 10,
+  q_req_subunit = 2.2222e-6*3600000, q_var_subunit = 10,
   s_manifold = c(0.3, 0.3, 2), s_ini_manifold = 10, n_manifold = 12, dec_manifold = 0.02,
-  d_lateral = 0.016, s_lateral = 1, s_ini_lateral = 4, n_lateral = 40, dec_lateral = -0.01,
-  coef_em = 6.41e-7, exp_em = 0.54, rc = 1e-4
+  d_lateral = 16, s_lateral = 1, s_ini_lateral = 4, n_lateral = 40, dec_lateral = -0.01,
+  coef_em = 6.41e-7*3600000, exp_em = 0.54, q_unit="l/h"
 )
 do.call(subunit_head_diameter, args_subunit_head_diameter)
 }

@@ -4,12 +4,12 @@
 \alias{backstep}
 \title{Backstep procedure}
 \usage{
-backstep(h_fim, d, s, n, dec, coef_em, exp_em, rc)
+backstep(h_fim, d, s, n, dec, coef_em, exp_em, ...)
 }
 \arguments{
 \item{h_fim}{Pressure at the end of the line in mca}
 
-\item{d}{Pipe diameter in meters}
+\item{d}{Pipe diameter in milimeters}
 
 \item{s}{Emitter spacing in meters}
 
@@ -20,9 +20,6 @@ backstep(h_fim, d, s, n, dec, coef_em, exp_em, rc)
 \item{coef_em}{Emission coefficient}
 
 \item{exp_em}{Emission exponent}
-
-\item{rc}{Roughness coefficient. Absolute roughness (in meters) for
-Universal equation.}
 }
 \description{
 \code{backstep} Calculate the pressure head and flow rate profile along
@@ -30,11 +27,24 @@ a lateral line
 }
 \examples{
 backstep(
-  h_fim = 10, d = 0.012, s = 1, n = 5, dec = 0, coef_em = 8.84e-7,
-  exp_em = 0.50, rc = 2e-6
+  h_fim = 10, d = 12, s = 1, n = 5, dec = 0, coef_em = 8.84e-7,
+  exp_em = 0.50
 )
 backstep(
-  h_fim = 10, d = 0.012, s = c(0.3, 0.3, 1), n = 12, dec = 0,
-  coef_em = 8.84e-7, exp_em = 0.50, rc = 2e-6
+  h_fim = 10
+  ,
+  d = 12
+  ,
+  s = c(0.3, 0.3, 1)
+  ,
+  n = 12
+  ,
+  dec = 0
+  ,
+  coef_em = 8.84e-7*3600000
+  ,
+  exp_em = 0.50
+  ,
+  q_unit="l/h"
 )
 }

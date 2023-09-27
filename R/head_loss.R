@@ -3,8 +3,10 @@
 #' \code{headLoss} calculate the head loss by friction in pipes by different
 #' methods
 #'
-#' @param d  Diameter in meters
+#' @param d  Diameter in milimeters
 #' @param q  Flow rate in cubic meters per second
+#' @param q_unit Flow measurement unit. Default is cubic meters per second (m3/s).
+#'               Also allowed liters per hour (l/h) and cubic meters per hour (m3/h)
 #' @param l  Length of pipe in meters
 #' @param rc Roughness coefficient. Absolute roughness (in meters) for
 #'           Universal equation.
@@ -21,13 +23,16 @@
 #' @return hf Head loss in meters
 #' @export
 #' @examples
-#' head_loss(d = 0.025, q = 31e-6, l = 100, rc = 1e-4)
-head_loss <- function(d, q, l, rc, v = 1.01e-6, g = 9.81, x1 = 0.06) {
-
+#' head_loss(d = 25, q = 31e-6, l = 100, rc = 1e-4)
+#' head_loss(d = 25, q = 111.6, q_unit="l/h", l = 100, rc = 1e-4)
+head_loss <- function(d, q, q_unit="m3/s", l, rc = 0.002, v = 1.01e-6, g = 9.81, x1 = 0.06) {
+  # standardization of units
+  q=flow_unit(q, q_unit)
+  d=d/1000
   # Reynolds number
-  re <- re(d, q, v)
+  re <- (4 * q) / (pi * d * v)
 
-
+  # head loss calculation
   if (re < 2000) {
     ## laminar flow
     regime <- "laminar"

@@ -13,14 +13,13 @@ lateral_head(
   dec_lateral,
   coef_em,
   exp_em,
-  rc,
-  ...
+  q_unit = q_unit
 )
 }
 \arguments{
 \item{q_req_lateral}{Average flow required on the lateral line, m3/s}
 
-\item{d_lateral}{Diameter of the lateral line, meter}
+\item{d_lateral}{Diameter of the lateral line, milimeter}
 
 \item{s_lateral}{Spacing between emitters on the lateral line, meter}
 
@@ -34,9 +33,7 @@ lateral_head(
 
 \item{exp_em}{Exponent of the flow-pressure equation of the emitter}
 
-\item{rc}{Absolute roughness relative to pipe material, meter}
-
-\item{...}{additional parameters}
+\item{q_unit=q_unit}{additional parameters}
 }
 \description{
 \code{lateral_head} Calculates the pressure at the beginning of the lateral
@@ -44,8 +41,24 @@ line for a given average flow rate
 }
 \examples{
 args_lateral_head <- list(
-  q_req_lateral = 5.5555e-7, d_lateral = 0.012, s_lateral = 0.20, s_ini_lateral = 1,
-  n_lateral = 200, dec_lateral = -0.01, coef_em = 1.67e-7, exp_em = 0.52, rc = 1e-4
+  q_req_lateral = 5.5555e-7*3600000
+  ,
+   d_lateral = 12
+   ,
+    s_lateral = 0.20
+    ,
+     s_ini_lateral = 1
+     ,
+
+  n_lateral = 200
+  ,
+   dec_lateral = -0.00
+   ,
+    coef_em = 1.67e-7*3600000
+    ,
+     exp_em = 0.52
+     ,
+      q_unit="l/h"
 )
 do.call(lateral_head, args_lateral_head)
 }

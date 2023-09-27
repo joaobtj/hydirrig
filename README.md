@@ -4,6 +4,8 @@
 # hydirrig
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/joaobtj/hydirrig/workflows/R-CMD-check/badge.svg)](https://github.com/joaobtj/hydirrig/actions)
 <!-- badges: end -->
 
 The goal of hydirrig is to provide functions to facilitate hydraulic

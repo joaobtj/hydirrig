@@ -13,13 +13,13 @@ lateral_profile(
   dec_lateral,
   coef_em,
   exp_em,
-  rc
+  q_unit = q_unit
 )
 }
 \arguments{
 \item{h_fim_lateral}{Pressure at the end of the lateral line, mca}
 
-\item{d_lateral}{Diameter of the lateral line, meter}
+\item{d_lateral}{Diameter of the lateral line, milimeter}
 
 \item{s_lateral}{Spacing between emitters on the lateral line, meter}
 
@@ -32,16 +32,32 @@ lateral_profile(
 \item{coef_em}{Coefficient of the flow-pressure equation of the emitter}
 
 \item{exp_em}{Exponent of the flow-pressure equation of the emitter}
-
-\item{rc}{Absolute roughness relative to pipe material, meter}
 }
 \description{
 \code{lateral_profile} Calculates the pressure and flow profile on the lateral line
 }
 \examples{
 args_lateral_profile <- list(
-  h_fim_lateral = 10, d_lateral = 0.012, s_lateral = 0.20, s_ini_lateral = 1,
-  n_lateral = 200, dec_lateral = -0.01, coef_em = 1.67e-7, exp_em = 0.52, rc = 1e-4
+  h_fim_lateral = 10
+  ,
+  d_lateral = 12
+  ,
+   s_lateral = 0.20
+   ,
+   s_ini_lateral = 1
+   ,
+
+  n_lateral = 20
+  ,
+  dec_lateral = -0.00
+  ,
+  coef_em = 1.67e-7
+  ,
+   exp_em = 0.52
+
+
+
 )
+
 do.call(lateral_profile, args_lateral_profile)
 }
